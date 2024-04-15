@@ -26,12 +26,34 @@ def read_data(file_name):
     return data_dict
 
 
+def selection_sort(list_of_numbers):
+    """
+    Sorts a list of numbers in ascending order using Selection Sort.
+    :param list_of_numbers: list of integers
+    :return: sorted list of integers
+    """
+    n = len(list_of_numbers)
+    for i in range(n-1):
+        min_index = i
+        for j in range(i+1, n):
+            if list_of_numbers[j] < list_of_numbers[min_index]:
+                min_index = j
+
+        list_of_numbers[i], list_of_numbers[min_index] = list_of_numbers[min_index], list_of_numbers[i]
+
+    return list_of_numbers
+
+
 def main():
-    pass
+    file_name = "numbers.csv"
+    data = read_data(file_name)
+    print("Original data:", data)
+    for key in data:
+        unsorted_series = data[key]
+        sorted_series = selection_sort(unsorted_series)
+        print("\nSorted series '{}':".format(key))
+        print(sorted_series)
 
 
 if __name__ == '__main__':
-    file_name = "numbers.csv"
-    data = read_data(file_name)
-    print(data)
-    #main()
+    main()
