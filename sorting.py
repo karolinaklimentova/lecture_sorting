@@ -26,20 +26,27 @@ def read_data(file_name):
     return data_dict
 
 
-def selection_sort(list_of_numbers):
+def selection_sort(list_of_numbers, direction="descending"):
     """
     Sorts a list of numbers in ascending order using Selection Sort.
     :param list_of_numbers: list of integers
+    :param direction: direction of sorting, "ascending" or "descending" (default: "ascending")
     :return: sorted list of integers
     """
     n = len(list_of_numbers)
     for i in range(n-1):
-        min_index = i
-        for j in range(i+1, n):
-            if list_of_numbers[j] < list_of_numbers[min_index]:
-                min_index = j
-
-        list_of_numbers[i], list_of_numbers[min_index] = list_of_numbers[min_index], list_of_numbers[i]
+        if direction == "ascending":
+            min_index = i
+            for j in range(i+1, n):
+                if list_of_numbers[j] < list_of_numbers[min_index]:
+                    min_index = j
+            list_of_numbers[i], list_of_numbers[min_index] = list_of_numbers[min_index], list_of_numbers[i]
+        elif direction == "descending":
+            max_index = i
+            for j in range(i+1, n):
+                if list_of_numbers[j] > list_of_numbers[max_index]:
+                    max_index = j
+            list_of_numbers[i], list_of_numbers[max_index] = list_of_numbers[max_index], list_of_numbers[i]
 
     return list_of_numbers
 
