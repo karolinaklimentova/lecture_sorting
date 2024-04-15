@@ -66,20 +66,44 @@ def bubble_sort(list_of_whole_numbers):
     return list_of_whole_numbers
 
 
+def insertion_sort(list_of_whole_numbers):
+    """
+    Sorts a list of numbers in ascending order using Insertion Sort.
+    :param list_of_whole_numbers: list of integers
+    :return: sorted list of integers
+    """
+    for i in range(1, len(list_of_whole_numbers)):
+        key = list_of_whole_numbers[i]
+        j = i - 1
+        while j >= 0 and key < list_of_whole_numbers[j]:
+            list_of_whole_numbers[j + 1] = list_of_whole_numbers[j]
+            j -= 1
+        list_of_whole_numbers[j + 1] = key
+
+    return list_of_whole_numbers
+
+
 def main():
     file_name = "numbers.csv"
     data = read_data(file_name)
-    print("Original data:", data)
+    print("Původní data:", data)
 
     for key in data:
-        unsorted_series = data[key]
-        sorted_series = selection_sort(unsorted_series)
-        print("\nSorted series '{}':".format(key))
-        print(sorted_series)
+        unsorted_numbers = data[key]
+        sorted_numbers = selection_sort(unsorted_numbers)
+        print("\nSeřazená posloupnost podle selection_sort '{}':".format(key))
+        print(sorted_numbers)
+
     for key in data:
-        unsorted_series = data[key]
-        sorted_numbers = bubble_sort(unsorted_series)
-        print("\nSeřazená posloupnost '{}':".format(key))
+        unsorted_numbers = data[key]
+        sorted_numbers = bubble_sort(unsorted_numbers)
+        print("\nSeřazená posloupnost podle bubble_sort '{}':".format(key))
+        print(sorted_numbers)
+
+    for key in data:
+        unsorted_numbers = data[key]
+        sorted_numbers = insertion_sort(unsorted_numbers)
+        print("\nSeřazená posloupnost podle insertion_sort '{}':".format(key))
         print(sorted_numbers)
 
 
